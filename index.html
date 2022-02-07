@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1" name="viewport" />
+	<meta name="description" content="Find Harsh Bardhan on the internet."> 
+	<meta name="keywords" content="Harsh Bardhan , Harsh Bardhan Profile , Harsh Bardhan Solidity Github">
+	<meta name="author" content="Harsh Bardhan">
+	<meta name="robots" content="index,follow">
+	<title>Harsh Bardhan</title>
+	<link rel="stylesheet" href="index.css">
+	
+
+</head>
+
+<body>
+	
+
+<div class="well" id="well">
+
+<div id="intro" class="panel">
+
+   	<div class="intro-content">
+   		<div class="row">
+
+	   			<h5>Hii Folks !</h5>
+				   <div class="typewriter">
+	   			<h1>I'm Harsh Bardhan.</h1></div>
+
+	   			<p class="intro-position">
+	   				<span>Learner</span>
+	   				<span>Developer</span>
+	   				<span>Observer</span>  
+	   			</p>
+   			
+   		</div>
+
+   	</div>
+	<div class="stars"></div>
+	<div class="twinkling"></div>
+   	<ul class="intro-social">        
+         <li class="hi"><a target="_blank" href="https://twitter.com/Harsh_Bardhan_"><img src="icons/tw.png" height="50px"></a></li>
+         <li><a target="_blank" href="https://www.instagram.com/harshbardhan19/"><img src="icons/ig.png" height="50px"></a></li>
+         <li><a target="_blank" href="https://github.com/harshbardhan20"><img src="icons/git.png" height="50px"></a></li>
+         <li><a target="_blank" href="https://www.linkedin.com/in/harsh-bardhan-0346041b0/"><img src="icons/in.png" height="50px"></a></li>
+         
+      </ul> 
+	
+
+   </div>
+
+<div class="panel" id="about">
+	<div class="about">
+		<div class="about-overlay"></div>
+		<div class="pic-container">
+			<img class="harsh" src="harsh.jpg" alt="my picture" id="dp">
+			<div class="description">
+				<h2 style="margin: 0;">About Me</h2>
+				<p class="me">
+					I am Harsh Bardhan, a 19-year-old Web Developer From India. I have been currently enrolled in my Bachelor's in Programming and Data Science, Indian Institute Of Technology Madras, Chennai, Tamil Nadu, India. I love to learn new technologies around the globe and currently I'm enthusiastic about learning Web 3.0 .....Currently Working On Project based on Ethereum Blockchain. If you have an exciting project in mind, or just wanna chat, get in touch with me or know more check below links now</a> :)</p>
+			</div>
+
+			<ul class="new">
+				<li class="one"><button target = "_blank" class="academics"> <a href="academics.html">Academics</a></button></li>
+				<li><button target = "_blank" class="Contact"><a href="https://twitter.com/Harsh_Bardhan_">Contact</a></button></li>
+				
+			</ul>	
+			
+		</div>
+		
+
+	</div>
+</div>
+
+</div>
+
+
+<script>
+	(function() {
+		"use strict";
+		
+		var pnls = document.querySelectorAll('.panel').length,
+				scdir, hold = false;
+
+		function _scrollY(obj) {
+			var slength, plength, pan, step = 100,
+					vh = window.innerHeight / 100,
+					vmin = Math.min(window.innerHeight, window.innerWidth) / 100;
+			if ((this !== undefined && this.id === 'well') || (obj !== undefined && obj.id === 'well')) {
+				pan = this || obj;
+				plength = parseInt(pan.offsetHeight / vh);
+			}
+			if (pan === undefined) {
+				return;
+			}
+			plength = plength || parseInt(pan.offsetHeight / vmin);
+			slength = parseInt(pan.style.transform.replace('translateY(', ''));
+			if (scdir === 'up' && Math.abs(slength) < (plength - plength / pnls)) {
+				slength = slength - step;
+			} else if (scdir === 'down' && slength < 0) {
+				slength = slength + step;
+			} else if (scdir === 'top') {
+				slength = 0;
+			}
+			if (hold === false) {
+				hold = true;
+				pan.style.transform = 'translateY(' + slength + 'vh)';
+				setTimeout(function() {
+					hold = false;
+				}, 1000);
+			}
+			console.log(scdir + ':' + slength + ':' + plength + ':' + (plength - plength / pnls));
+		}
+		
+		function _swipe(obj) {
+			var swdir,
+					sX,
+					sY,
+					dX,
+					dY,
+					threshold = 100,
+					
+					slack = 50,
+					
+					alT = 500,
+					
+					elT, 
+					stT; 
+			obj.addEventListener('touchstart', function(e) {
+				var tchs = e.changedTouches[0];
+				swdir = 'none';
+				sX = tchs.pageX;
+				sY = tchs.pageY;
+				stT = new Date().getTime();
+				//e.preventDefault();
+			}, false);
+
+			obj.addEventListener('touchmove', function(e) {
+				e.preventDefault(); /*[prevent scrolling when inside DIV]*/
+			}, false);
+
+			obj.addEventListener('touchend', function(e) {
+				var tchs = e.changedTouches[0];
+				dX = tchs.pageX - sX;
+				dY = tchs.pageY - sY;
+				elT = new Date().getTime() - stT;
+				if (elT <= alT) {
+					if (Math.abs(dX) >= threshold && Math.abs(dY) <= slack) {
+						swdir = (dX < 0) ? 'left' : 'right';
+					} else if (Math.abs(dY) >= threshold && Math.abs(dX) <= slack) {
+						swdir = (dY < 0) ? 'up' : 'down';
+					}
+					if (obj.id === 'well') {
+						if (swdir === 'up') {
+							scdir = swdir;
+							_scrollY(obj);
+						} else if (swdir === 'down' && obj.style.transform !== 'translateY(0)') {
+							scdir = swdir;
+							_scrollY(obj);
+
+						}
+						e.stopPropagation();
+					}
+				}
+			}, false);
+		}
+		/*[assignments]*/
+		var well = document.getElementById('well');
+		well.style.transform = 'translateY(0)';
+		well.addEventListener('wheel', function(e) {
+			if (e.deltaY < 0) {
+				scdir = 'down';
+			}
+			if (e.deltaY > 0) {
+				scdir = 'up';
+			}
+			e.stopPropagation();
+		});
+		well.addEventListener('wheel', _scrollY);
+		_swipe(well);
+		var tops = document.querySelectorAll('.top');
+		for (var i = 0; i < tops.length; i++) {
+			tops[i].addEventListener('click', function() {
+				scdir = 'top';
+				_scrollY(well);
+			});
+		}
+	})();
+</script>
+
+
+</body>
+</html>
+
+
+
+
+
+
